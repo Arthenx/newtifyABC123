@@ -108,6 +108,16 @@ public class MainLayout extends AppLayout {
             return;
         }
 
+        if (tabId.equals(ETopicType.GAMING.getValue())) {
+            UI.getCurrent().navigate(ETopicType.GAMING.getValue().toLowerCase());
+            return;
+        }
+
+        if (tabId.equals(ETopicType.FINANCE.getValue())) {
+            UI.getCurrent().navigate(ETopicType.FINANCE.getValue().toLowerCase());
+            return;
+        }
+
         UI.getCurrent().navigate(""); // default
     }
 
@@ -117,6 +127,9 @@ public class MainLayout extends AppLayout {
                 topicTab.add(VaadinIcon.GLOBE.create());
                 break;
             case GAMING:
+                topicTab.add(VaadinIcon.GAMEPAD.create());
+                break;
+            case FINANCE:
                 topicTab.add(VaadinIcon.GAMEPAD.create());
                 break;
             default:
