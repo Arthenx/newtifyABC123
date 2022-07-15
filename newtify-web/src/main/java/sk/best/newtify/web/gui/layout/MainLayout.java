@@ -129,11 +129,13 @@ public class MainLayout extends AppLayout {
             case GAMING:
                 topicTab.add(VaadinIcon.GAMEPAD.create());
                 break;
-            case FINANCE:
-                topicTab.add(VaadinIcon.GAMEPAD.create());
+            /*
+                case FINANCE:
+                topicTab.add(VaadinIcon.FINANCE.create());
                 break;
+                */
             default:
-                topicTab.setEnabled(false);
+                topicTab.setEnabled(true);
                 // no-op
         }
     }
