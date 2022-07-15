@@ -1,7 +1,7 @@
 package sk.best.newtify.api;
 
-import sk.best.newtify.api.dto.FinanceDTO;
-import sk.best.newtify.api.dto.CreateFinanceDTO;
+import sk.best.newtify.api.dto.ArticleDTO;
+import sk.best.newtify.api.dto.CreateArticleDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Parameters;
@@ -17,7 +17,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.multipart.MultipartFile;
-import sk.best.newtify.api.dto.FinanceDTO;
+import sk.best.newtify.api.dto.ArticleDTO;
 
 import javax.validation.Valid;
 import javax.validation.constraints.*;
@@ -28,33 +28,33 @@ import javax.annotation.Generated;
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-07-14T12:35:24.888276700+02:00[Europe/Berlin]")
 @Validated
-@Tag(name = "Finances", description = "Some finance information")
+@Tag(name = "Articles", description = "Some Article information")
 public interface FinancesApi {
 
     /**
-     * POST /v1/finances
+     * POST /v1/articles
      * This is the endpoint which will create Article about finance
      *
-     * @param createFinanceDTO Data model for article creation (required)
+     * @param createArticleDTO Data model for article creation (required)
      * @return Hey, everything went well (status code 201)
      */
     @Operation(
-            operationId = "createFinance",
-            tags = { "finances" },
+            operationId = "createArticle",
+            tags = { "articles" },
             responses = {
                     @ApiResponse(responseCode = "201", description = "Hey, everything went well", content = {
-                            @Content(mediaType = "application/json", schema = @Schema(implementation = FinanceDTO.class))
+                            @Content(mediaType = "application/json", schema = @Schema(implementation = ArticleDTO.class))
                     })
             }
     )
     @RequestMapping(
             method = RequestMethod.POST,
-            value = "/v1/finances",
+            value = "/v1/articles",
             produces = { "application/json" },
             consumes = { "application/json" }
     )
-    ResponseEntity<FinanceDTO> createFinance(
-            @Parameter(name = "CreateFinanceDTO", description = "Data model for article creation", required = true) @Valid @RequestBody CreateFinanceDTO createFinanceDTO
+    ResponseEntity<ArticleDTO> createArticle(
+            @Parameter(name = "CreateArticleDTO", description = "Data model for article creation", required = true) @Valid @RequestBody CreateArticleDTO createArticleDTO
     );
 
 
@@ -66,18 +66,18 @@ public interface FinancesApi {
      * @return Article was successfully deleted (status code 200)
      */
     @Operation(
-            operationId = "deleteFinance",
-            tags = { "finances" },
+            operationId = "deleteArticle",
+            tags = { "articles" },
             responses = {
                     @ApiResponse(responseCode = "200", description = "Article was successfully deleted")
             }
     )
     @RequestMapping(
             method = RequestMethod.DELETE,
-            value = "/v1/finances/{financeUuid}"
+            value = "/v1/articles/{articleUuid}"
     )
-    ResponseEntity<Void> deleteFinance(
-            @Parameter(name = "financeUuid", description = "Article resource identifier", required = true) @PathVariable("financeUuid") String financeUuid
+    ResponseEntity<Void> deleteArticle(
+            @Parameter(name = "articleUuid", description = "Article resource identifier", required = true) @PathVariable("articleUuid") String articleUuid
     );
 
 
@@ -89,21 +89,21 @@ public interface FinancesApi {
      * @return returns detail of article (status code 200)
      */
     @Operation(
-            operationId = "retrieveFinance",
-            tags = { "finances" },
+            operationId = "retrieveArticle",
+            tags = { "articles" },
             responses = {
                     @ApiResponse(responseCode = "200", description = "returns detail of article", content = {
-                            @Content(mediaType = "application/json", schema = @Schema(implementation = FinanceDTO.class))
+                            @Content(mediaType = "application/json", schema = @Schema(implementation = ArticleDTO.class))
                     })
             }
     )
     @RequestMapping(
             method = RequestMethod.GET,
-            value = "/v1/finances/{financeUuid}",
+            value = "/v1/articles/{articleUuid}",
             produces = { "application/json" }
     )
-    ResponseEntity<FinanceDTO> retrieveArticle(
-            @Parameter(name = "financeUuid", description = "", required = true) @PathVariable("financeUuid") String financeUuid
+    ResponseEntity<ArticleDTO> retrieveArticle(
+            @Parameter(name = "articleUuid", description = "", required = true) @PathVariable("articleUuid") String articleUuid
     );
 
 
@@ -115,20 +115,20 @@ public interface FinancesApi {
      * @return It will return list of articles either by topic or everything (status code 200)
      */
     @Operation(
-            operationId = "retrieveFinances",
-            tags = { "finances" },
+            operationId = "retrieveArticles",
+            tags = { "articles" },
             responses = {
                     @ApiResponse(responseCode = "200", description = "It will return list of articles either by topic or everything", content = {
-                            @Content(mediaType = "application/json", schema = @Schema(implementation = FinanceDTO.class))
+                            @Content(mediaType = "application/json", schema = @Schema(implementation = ArticleDTO.class))
                     })
             }
     )
     @RequestMapping(
             method = RequestMethod.GET,
-            value = "/v1/finances",
+            value = "/v1/articles",
             produces = { "application/json" }
     )
-    ResponseEntity<List<FinanceDTO>> retrieveFinances(
+    ResponseEntity<List<ArticleDTO>> retrieveArticles(
             @Parameter(name = "topic", description = "Used to filter articles by topic") @Valid @RequestParam(value = "topic", required = false) String topic
     );
 
@@ -142,19 +142,19 @@ public interface FinancesApi {
      * @return Article was successfully updated (status code 200)
      */
     @Operation(
-            operationId = "updateFinance",
-            tags = { "finances" },
+            operationId = "updateArticle",
+            tags = { "articles" },
             responses = {
                     @ApiResponse(responseCode = "200", description = "Article was successfully updated")
             }
     )
     @RequestMapping(
             method = RequestMethod.PUT,
-            value = "/v1/finacnes/{financeUuid}",
+            value = "/v1/finacnes/{articleUuid}",
             consumes = { "application/json" }
     )
-    ResponseEntity<Void> updateFinance(
-            @Parameter(name = "articleUuid", description = "Article resource identifier", required = true) @PathVariable("financeUuid") String financeUuid,
-            @Parameter(name = "CreateArticleDTO", description = "Data model with properties which are required for article update", required = true) @Valid @RequestBody CreateFinanceDTO createFinanceDTO
+    ResponseEntity<Void> updateArticle(
+            @Parameter(name = "articleUuid", description = "Article resource identifier", required = true) @PathVariable("articleUuid") String articleUuid,
+            @Parameter(name = "CreateArticleDTO", description = "Data model with properties which are required for article update", required = true) @Valid @RequestBody CreateArticleDTO createArticleDTO
     );
 }

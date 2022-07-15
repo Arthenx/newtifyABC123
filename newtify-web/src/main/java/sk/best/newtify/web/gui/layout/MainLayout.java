@@ -129,7 +129,7 @@ public class MainLayout extends AppLayout {
                 topicTab.add(VaadinIcon.GAMEPAD.create());
                 break;
             case FINANCE:
-                topicTab.add(VaadinIcon.FINANCE.create());
+                topicTab.add(VaadinIcon.EURO.create());
                 break;
             default:
                 topicTab.setEnabled(true); //HERE
@@ -142,12 +142,14 @@ public class MainLayout extends AppLayout {
 
         JButton button = new JButton();
         button.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        /*
         button.addMouseListener(new MouseListener() {
             @Override
             public void mousePressed(MouseEvent e) {
                 onTabChanged(ETopicType.NEWS.getValue());
             }
         });
+         */
 
         H1 title = new H1("Newtify");
         title.getStyle()
