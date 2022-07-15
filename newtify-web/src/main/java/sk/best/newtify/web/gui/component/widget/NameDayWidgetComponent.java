@@ -32,11 +32,7 @@ import java.util.Map;
 public class NameDayWidgetComponent extends FlexLayout {
 
     private static final long              serialVersionUID    = 1414727226197592073L;
-/**    private static final DateTimeFormatter DATE_TIME_FORMATTER = new DateTimeFormatterBuilder()
-            .appendText(ChronoField.DAY_OF_MONTH, ordinalNumbers)
-            .appendPattern(" MMMM")
-            .toFormatter();
-*/
+
     private final NamedaysApi namedaysApi;
 
     public NameDayWidgetComponent(NamedaysApi namedaysApi) {
@@ -89,7 +85,8 @@ public class NameDayWidgetComponent extends FlexLayout {
         }
         DateTimeFormatter DAY_TIME_FORMATTER = new DateTimeFormatterBuilder()
                 .appendText(ChronoField.DAY_OF_MONTH, ordinalNumbers)
-                .appendPattern(" MMMM")
+                .appendPattern(" MM")
+                .appendPattern("yyyy")
                 .toFormatter();
         H3 todayDateValue = new H3(DAY_TIME_FORMATTER.format(
                 LocalDate.of(currentYear, currentMonth, currentDay))
