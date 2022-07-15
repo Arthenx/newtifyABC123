@@ -161,14 +161,12 @@ public class MainLayout extends AppLayout {
 
     private void createTitle() {
         Div titleDiv = new Div();
-
+        H1 title = new H1("Newtify");
+        title.getStyle()
+                .set("font-size", "var(--lumo-font-size-l)")
+                .set("margin", "0 0 0 0.5em");
         Icon titleIcon = VaadinIcon.NEWSPAPER.create();
-
-        Button newsButton = new Button("Newtify"); //, titleIcon);
-        newsButton.addActionListener(buttonClickEvent -> {});
-        //button.addClickListener(clickEvent -> {});
-
-        // titleDiv.add(newsButton);
+        titleDiv.add(titleIcon, title);
         titleDiv.getStyle()
                 // margin
                 .set("margin", "0 0 0 0.5em")
@@ -178,8 +176,6 @@ public class MainLayout extends AppLayout {
                 .set("flex-wrap", "nowrap")
                 .set("align-items", "center")
                 .set("height", "100%");
-
         navigationBar.add(titleDiv);
     }
-
 }
