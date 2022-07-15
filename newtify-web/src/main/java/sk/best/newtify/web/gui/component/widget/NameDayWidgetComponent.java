@@ -85,8 +85,8 @@ public class NameDayWidgetComponent extends FlexLayout {
         }
         DateTimeFormatter DAY_TIME_FORMATTER = new DateTimeFormatterBuilder()
                 .appendText(ChronoField.DAY_OF_MONTH, ordinalNumbers)
-                .appendPattern(" MM")
-                .appendPattern("yyyy")
+                .appendPattern(" MMM")
+                .appendPattern(" yyyy")
                 .toFormatter();
         H3 todayDateValue = new H3(DAY_TIME_FORMATTER.format(
                 LocalDate.of(currentYear, currentMonth, currentDay))

@@ -161,12 +161,14 @@ public class MainLayout extends AppLayout {
 
         Icon titleIcon = VaadinIcon.NEWSPAPER.create();
 
+        /*
         Button newsButton = new Button("Newtify", titleIcon);
         newsButton.addClickListener(buttonClickEvent -> {
 
         });
 
         titleDiv.add(newsButton);
+         */
         titleDiv.getStyle()
                 // margin
                 .set("margin", "0 0 0 0.5em")
