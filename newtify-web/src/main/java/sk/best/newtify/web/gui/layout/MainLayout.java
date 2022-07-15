@@ -19,10 +19,6 @@ import com.vaadin.flow.theme.lumo.Lumo;
 import sk.best.newtify.api.dto.ETopicType;
 
 import javax.annotation.PostConstruct;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -112,8 +108,23 @@ public class MainLayout extends AppLayout {
             return;
         }
 
+        if (tabId.equals(ETopicType.FASHION.getValue())) {
+            UI.getCurrent().navigate(ETopicType.FASHION.getValue().toLowerCase());
+            return;
+        }
+
         if (tabId.equals(ETopicType.FINANCE.getValue())) {
             UI.getCurrent().navigate(ETopicType.FINANCE.getValue().toLowerCase());
+            return;
+        }
+
+        if (tabId.equals(ETopicType.MOVIE.getValue())) {
+            UI.getCurrent().navigate(ETopicType.MOVIE.getValue().toLowerCase());
+            return;
+        }
+
+        if (tabId.equals(ETopicType.MUSIC.getValue())) {
+            UI.getCurrent().navigate(ETopicType.MUSIC.getValue().toLowerCase());
             return;
         }
 
@@ -131,33 +142,31 @@ public class MainLayout extends AppLayout {
             case FINANCE:
                 topicTab.add(VaadinIcon.EURO.create());
                 break;
+            case FASHION:
+                topicTab.add(VaadinIcon.FEMALE.create());
+                break;
+            case MOVIE:
+                topicTab.add(VaadinIcon.MOVIE.create());
+                break;
+            case MUSIC:
+                topicTab.add(VaadinIcon.MUSIC.create());
+                break;
             default:
-                topicTab.setEnabled(true); //HERE
-                // no-op
+                topicTab.setEnabled(false);
         }
     }
 
     private void createTitle() {
         Div titleDiv = new Div();
 
-        JButton button = new JButton();
-        button.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        /*
-        button.addMouseListener(new MouseListener() {
-            @Override
-            public void mousePressed(MouseEvent e) {
-                onTabChanged(ETopicType.NEWS.getValue());
-            }
-        });
-         */
-
-        H1 title = new H1("Newtify");
-        title.getStyle()
-                .set("font-size", "var(--lumo-font-size-l)")
-                .set("margin", "0 0 0 0.5em");
         Icon titleIcon = VaadinIcon.NEWSPAPER.create();
 
-        titleDiv.add(titleIcon, title);
+        Button newsButton = new Button("Newtify", titleIcon);
+        newsButton.addClickListener(buttonClickEvent -> {
+
+        });
+
+        titleDiv.add(newsButton);
         titleDiv.getStyle()
                 // margin
                 .set("margin", "0 0 0 0.5em")
