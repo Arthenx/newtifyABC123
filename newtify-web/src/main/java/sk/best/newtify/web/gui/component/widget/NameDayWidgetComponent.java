@@ -15,6 +15,7 @@ import sk.best.newtify.api.dto.NameDayDTO;
 import javax.annotation.PostConstruct;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.util.Calendar;
 import java.util.Locale;
 
@@ -28,7 +29,7 @@ import java.util.Locale;
 public class NameDayWidgetComponent extends FlexLayout {
 
     private static final long              serialVersionUID    = 1414727226197592073L;
-    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("d LLLL uuuu", Locale.ENGLISH);
+/**    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("d"+" LLLL uuuu", Locale.ENGLISH);    */
 
     private final NamedaysApi namedaysApi;
 
@@ -85,8 +86,9 @@ public class NameDayWidgetComponent extends FlexLayout {
                 .set("color", "var(--lumo-contrast-color)");
 
         String dayNumberSuffix = getDayNumberSuffix(currentDay);
-        H3 todayDateValue = new H3(DATE_TIME_FORMATTER.format(
-                LocalDate.of(currentYear, currentMonth, currentDay))+ dayNumberSuffix
+        DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("d"+dayNumberSuffix+" LLLL uuuu", Locale.ENGLISH);
+        H3 todayDateValue = new H3(FORMATTER.format(
+                LocalDate.of(currentDay, currentMonth, currentDay))
         );
         todayDateValue.getStyle()
                 .set("color", "white")
