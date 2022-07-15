@@ -2,6 +2,7 @@ package sk.best.newtify.web.connector;
 
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.util.CastUtils;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -32,5 +33,4 @@ public class DollarPriceConnectorService implements DollarpriceApi {
                     .build();
         }
     }
-
 }
