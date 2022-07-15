@@ -56,6 +56,21 @@ public class NameDayWidgetComponent extends FlexLayout {
         this.setWidthFull();
     }
 
+    private String getDayNumberSuffix(int currentDay) {
+        if (currentDay >= 11 && currentDay <= 13) {
+            return "th";
+        }
+        switch (currentDay % 10) {
+            case 1:
+                return "st";
+            case 2:
+                return "nd";
+            case 3:
+                return "rd";
+            default:
+                return "th";
+        }
+    }
     private void createWidgetIcon() {
         Icon calendarIcon = VaadinIcon.CALENDAR_USER.create();
         calendarIcon.setSize("5em");
@@ -69,8 +84,9 @@ public class NameDayWidgetComponent extends FlexLayout {
         todayDateTitle.getStyle()
                 .set("color", "var(--lumo-contrast-color)");
 
+        String dayNumberSuffix = getDayNumberSuffix(currentDay);
         H3 todayDateValue = new H3(DATE_TIME_FORMATTER.format(
-                LocalDate.of(currentYear, currentMonth, currentDay))
+                LocalDate.of(currentYear, currentMonth, currentDay))+ dayNumberSuffix
         );
         todayDateValue.getStyle()
                 .set("color", "white")
@@ -94,4 +110,5 @@ public class NameDayWidgetComponent extends FlexLayout {
 
         this.add(nameDayLabel, nameDayValue);
     }
+
 }
