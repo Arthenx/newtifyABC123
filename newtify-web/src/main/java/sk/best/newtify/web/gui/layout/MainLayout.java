@@ -112,11 +112,6 @@ public class MainLayout extends AppLayout {
             return;
         }
 
-        if (tabId.equals(ETopicType.FINANCE.getValue())) {
-            UI.getCurrent().navigate(ETopicType.FINANCE.getValue().toLowerCase());
-            return;
-        }
-
         UI.getCurrent().navigate(""); // default
     }
 
