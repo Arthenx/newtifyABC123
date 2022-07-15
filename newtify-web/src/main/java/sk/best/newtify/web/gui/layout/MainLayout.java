@@ -17,6 +17,7 @@ import com.vaadin.flow.component.tabs.Tabs;
 import com.vaadin.flow.component.tabs.TabsVariant;
 import com.vaadin.flow.theme.Theme;
 import com.vaadin.flow.theme.lumo.Lumo;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import sk.best.newtify.api.dto.ETopicType;
 
 import javax.annotation.PostConstruct;
@@ -164,11 +165,10 @@ public class MainLayout extends AppLayout {
         Icon titleIcon = VaadinIcon.NEWSPAPER.create();
 
         Button newsButton = new Button("Newtify"); //, titleIcon);
-        newsButton.addClickListener(buttonClickEvent -> {
+        newsButton.addActionListener(buttonClickEvent -> {});
+        //button.addClickListener(clickEvent -> {});
 
-        });
-
-        titleDiv.add(newsButton);
+        // titleDiv.add(newsButton);
         titleDiv.getStyle()
                 // margin
                 .set("margin", "0 0 0 0.5em")
