@@ -16,8 +16,11 @@ import javax.annotation.PostConstruct;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
+import java.time.temporal.ChronoField;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 /**
  * @author Marek Urban
@@ -29,8 +32,11 @@ import java.util.Locale;
 public class NameDayWidgetComponent extends FlexLayout {
 
     private static final long              serialVersionUID    = 1414727226197592073L;
-/**    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("d"+" LLLL uuuu", Locale.ENGLISH);    */
-
+/**    private static final DateTimeFormatter DATE_TIME_FORMATTER = new DateTimeFormatterBuilder()
+            .appendText(ChronoField.DAY_OF_MONTH, ordinalNumbers)
+            .appendPattern(" MMMM")
+            .toFormatter();
+*/
     private final NamedaysApi namedaysApi;
 
     public NameDayWidgetComponent(NamedaysApi namedaysApi) {
@@ -57,21 +63,6 @@ public class NameDayWidgetComponent extends FlexLayout {
         this.setWidthFull();
     }
 
-    private String getDayNumberSuffix(int currentDay) {
-        if (currentDay >= 11 && currentDay <= 13) {
-            return "th";
-        }
-        switch (currentDay % 10) {
-            case 1:
-                return "st";
-            case 2:
-                return "nd";
-            case 3:
-                return "rd";
-            default:
-                return "th";
-        }
-    }
     private void createWidgetIcon() {
         Icon calendarIcon = VaadinIcon.CALENDAR_USER.create();
         calendarIcon.setSize("5em");
@@ -85,10 +76,23 @@ public class NameDayWidgetComponent extends FlexLayout {
         todayDateTitle.getStyle()
                 .set("color", "var(--lumo-contrast-color)");
 
-        String dayNumberSuffix = getDayNumberSuffix(currentDay);
-        DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("d"+dayNumberSuffix+" LLLL uuuu", Locale.ENGLISH);
-        H3 todayDateValue = new H3(FORMATTER.format(
-                LocalDate.of(currentDay, currentMonth, currentDay))
+        Map<Long, String> ordinalNumbers = new HashMap<>(42);
+        ordinalNumbers.put(1L, "1st");
+        ordinalNumbers.put(2L, "2nd");
+        ordinalNumbers.put(3L, "3rd");
+        ordinalNumbers.put(21L, "21st");
+        ordinalNumbers.put(22L, "22nd");
+        ordinalNumbers.put(23L, "23rd");
+        ordinalNumbers.put(31L, "31st");
+        for (long d = 1; d <= 31; d++) {
+            ordinalNumbers.putIfAbsent(d, "" + d + "th");
+        }
+        DateTimeFormatter DAY_TIME_FORMATTER = new DateTimeFormatterBuilder()
+                .appendText(ChronoField.DAY_OF_MONTH, ordinalNumbers)
+                .appendPattern(" MMMM")
+                .toFormatter();
+        H3 todayDateValue = new H3(DAY_TIME_FORMATTER.format(
+                LocalDate.of(currentYear, currentMonth, currentDay))
         );
         todayDateValue.getStyle()
                 .set("color", "white")
