@@ -7,6 +7,7 @@ import com.vaadin.flow.router.Route;
 import org.springframework.beans.factory.ObjectFactory;
 import sk.best.newtify.api.ArticlesApi;
 import sk.best.newtify.api.dto.ArticleDTO;
+import sk.best.newtify.api.dto.ETopicType;
 import sk.best.newtify.web.gui.component.article.ArticlePreviewComponent;
 import sk.best.newtify.web.gui.component.widget.NameDayWidgetComponent;
 import sk.best.newtify.web.gui.layout.MainLayout;
@@ -84,6 +85,6 @@ public class FinanceView extends FlexLayout {
     }
 
     private void fetchArticles() {
-        articles = articlesApi.retrieveArticles(null).getBody();
+        articles = articlesApi.retrieveArticles(ETopicType.FINANCE.getValue()).getBody();
     }
 }

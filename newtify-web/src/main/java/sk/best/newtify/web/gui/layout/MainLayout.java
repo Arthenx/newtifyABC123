@@ -1,5 +1,6 @@
 package sk.best.newtify.web.gui.layout;
 
+import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.dependency.CssImport;
@@ -19,6 +20,7 @@ import com.vaadin.flow.theme.lumo.Lumo;
 import sk.best.newtify.api.dto.ETopicType;
 
 import javax.annotation.PostConstruct;
+import java.awt.*;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -161,14 +163,12 @@ public class MainLayout extends AppLayout {
 
         Icon titleIcon = VaadinIcon.NEWSPAPER.create();
 
-        /*
-        Button newsButton = new Button("Newtify", titleIcon);
+        Button newsButton = new Button("Newtify"); //, titleIcon);
         newsButton.addClickListener(buttonClickEvent -> {
 
         });
 
         titleDiv.add(newsButton);
-         */
         titleDiv.getStyle()
                 // margin
                 .set("margin", "0 0 0 0.5em")
