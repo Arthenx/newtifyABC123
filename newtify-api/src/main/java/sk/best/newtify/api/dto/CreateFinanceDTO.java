@@ -28,20 +28,8 @@ public class CreateFinanceDTO implements Serializable {
     @JsonProperty("title")
     private String title;
 
-    @JsonProperty("shortTitle")
-    private String shortTitle;
-
     @JsonProperty("text")
     private String text;
-
-    @JsonProperty("createdAt")
-    private Long createdAt = null;
-
-    @JsonProperty("author")
-    private String author;
-
-    @JsonProperty("topicType")
-    private ETopicType topicType;
 
     public CreateFinanceDTO title(String title) {
         this.title = title;
@@ -60,25 +48,6 @@ public class CreateFinanceDTO implements Serializable {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public CreateFinanceDTO shortTitle(String shortTitle) {
-        this.shortTitle = shortTitle;
-        return this;
-    }
-
-    /**
-     * Get shortTitle
-     * @return shortTitle
-     */
-
-    @Schema(name = "shortTitle", required = false)
-    public String getShortTitle() {
-        return shortTitle;
-    }
-
-    public void setShortTitle(String shortTitle) {
-        this.shortTitle = shortTitle;
     }
 
     public CreateFinanceDTO text(String text) {
@@ -100,63 +69,6 @@ public class CreateFinanceDTO implements Serializable {
         this.text = text;
     }
 
-    public CreateFinanceDTO createdAt(Long createdAt) {
-        this.createdAt = createdAt;
-        return this;
-    }
-
-    /**
-     * Get createdAt
-     * @return createdAt
-     */
-
-    @Schema(name = "createdAt", required = false)
-    public Long getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Long createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public CreateFinanceDTO author(String author) {
-        this.author = author;
-        return this;
-    }
-
-    /**
-     * Get author
-     * @return author
-     */
-
-    @Schema(name = "author", required = false)
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
-    public CreateFinanceDTO topicType(ETopicType topicType) {
-        this.topicType = topicType;
-        return this;
-    }
-
-    /**
-     * Get topicType
-     * @return topicType
-     */
-    @Valid
-    @Schema(name = "topicType", required = false)
-    public ETopicType getTopicType() {
-        return topicType;
-    }
-
-    public void setTopicType(ETopicType topicType) {
-        this.topicType = topicType;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -167,16 +79,12 @@ public class CreateFinanceDTO implements Serializable {
         }
         CreateFinanceDTO createFinanceDTO = (CreateFinanceDTO) o;
         return Objects.equals(this.title, createFinanceDTO.title) &&
-                Objects.equals(this.shortTitle, createFinanceDTO.shortTitle) &&
-                Objects.equals(this.text, createFinanceDTO.text) &&
-                Objects.equals(this.createdAt, createFinanceDTO.createdAt) &&
-                Objects.equals(this.author, createFinanceDTO.author) &&
-                Objects.equals(this.topicType, createFinanceDTO.topicType);
+                Objects.equals(this.text, createFinanceDTO.text);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(title, shortTitle, text, createdAt, author, topicType);
+        return Objects.hash(title, text);
     }
 
     @Override
@@ -184,11 +92,7 @@ public class CreateFinanceDTO implements Serializable {
         StringBuilder sb = new StringBuilder();
         sb.append("class CreateArticleDTO {\n");
         sb.append("    title: ").append(toIndentedString(title)).append("\n");
-        sb.append("    shortTitle: ").append(toIndentedString(shortTitle)).append("\n");
         sb.append("    text: ").append(toIndentedString(text)).append("\n");
-        sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
-        sb.append("    author: ").append(toIndentedString(author)).append("\n");
-        sb.append("    topicType: ").append(toIndentedString(topicType)).append("\n");
         sb.append("}");
         return sb.toString();
     }

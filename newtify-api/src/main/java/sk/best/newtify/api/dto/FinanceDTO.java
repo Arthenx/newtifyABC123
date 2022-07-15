@@ -31,20 +31,8 @@ public class FinanceDTO implements Serializable{
     @JsonProperty("title")
     private String title;
 
-    @JsonProperty("shortTitle")
-    private String shortTitle;
-
     @JsonProperty("text")
     private String text;
-
-    @JsonProperty("createdAt")
-    private Long createdAt = null;
-
-    @JsonProperty("author")
-    private String author;
-
-    @JsonProperty("topicType")
-    private ETopicType topicType;
 
     public FinanceDTO uuid(String uuid) {
         this.uuid = uuid;
@@ -84,24 +72,6 @@ public class FinanceDTO implements Serializable{
         this.title = title;
     }
 
-    public FinanceDTO shortTitle(String shortTitle) {
-        this.shortTitle = shortTitle;
-        return this;
-    }
-
-    /**
-     * Get shortTitle
-     * @return shortTitle
-     */
-
-    @Schema(name = "shortTitle", required = false)
-    public String getShortTitle() {
-        return shortTitle;
-    }
-
-    public void setShortTitle(String shortTitle) {
-        this.shortTitle = shortTitle;
-    }
 
     public FinanceDTO text(String text) {
         this.text = text;
@@ -122,63 +92,6 @@ public class FinanceDTO implements Serializable{
         this.text = text;
     }
 
-    public FinanceDTO createdAt(Long createdAt) {
-        this.createdAt = createdAt;
-        return this;
-    }
-
-    /**
-     * Get createdAt
-     * @return createdAt
-     */
-
-    @Schema(name = "createdAt", required = false)
-    public Long getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Long createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public FinanceDTO author(String author) {
-        this.author = author;
-        return this;
-    }
-
-    /**
-     * Get author
-     * @return author
-     */
-
-    @Schema(name = "author", required = false)
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
-    public FinanceDTO topicType(ETopicType topicType) {
-        this.topicType = topicType;
-        return this;
-    }
-
-    /**
-     * Get topicType
-     * @return topicType
-     */
-    @Valid
-    @Schema(name = "topicType", required = false)
-    public ETopicType getTopicType() {
-        return topicType;
-    }
-
-    public void setTopicType(ETopicType topicType) {
-        this.topicType = topicType;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -190,16 +103,12 @@ public class FinanceDTO implements Serializable{
         FinanceDTO financeDTO = (FinanceDTO) o;
         return Objects.equals(this.uuid, financeDTO.uuid) &&
                 Objects.equals(this.title, financeDTO.title) &&
-                Objects.equals(this.shortTitle, financeDTO.shortTitle) &&
-                Objects.equals(this.text, financeDTO.text) &&
-                Objects.equals(this.createdAt, financeDTO.createdAt) &&
-                Objects.equals(this.author, financeDTO.author) &&
-                Objects.equals(this.topicType, financeDTO.topicType);
+                Objects.equals(this.text, financeDTO.text);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(uuid, title, shortTitle, text, createdAt, author, topicType);
+        return Objects.hash(uuid, title, text);
     }
 
     @Override
@@ -208,11 +117,7 @@ public class FinanceDTO implements Serializable{
         sb.append("class FinanceDTO {\n");
         sb.append("    uuid: ").append(toIndentedString(uuid)).append("\n");
         sb.append("    title: ").append(toIndentedString(title)).append("\n");
-        sb.append("    shortTitle: ").append(toIndentedString(shortTitle)).append("\n");
         sb.append("    text: ").append(toIndentedString(text)).append("\n");
-        sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
-        sb.append("    author: ").append(toIndentedString(author)).append("\n");
-        sb.append("    topicType: ").append(toIndentedString(topicType)).append("\n");
         sb.append("}");
         return sb.toString();
     }

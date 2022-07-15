@@ -19,6 +19,10 @@ import com.vaadin.flow.theme.lumo.Lumo;
 import sk.best.newtify.api.dto.ETopicType;
 
 import javax.annotation.PostConstruct;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -108,11 +112,6 @@ public class MainLayout extends AppLayout {
             return;
         }
 
-        if (tabId.equals(ETopicType.GAMING.getValue())) {
-            UI.getCurrent().navigate(ETopicType.GAMING.getValue().toLowerCase());
-            return;
-        }
-
         if (tabId.equals(ETopicType.FINANCE.getValue())) {
             UI.getCurrent().navigate(ETopicType.FINANCE.getValue().toLowerCase());
             return;
@@ -129,19 +128,26 @@ public class MainLayout extends AppLayout {
             case GAMING:
                 topicTab.add(VaadinIcon.GAMEPAD.create());
                 break;
-            /*
-                case FINANCE:
+            case FINANCE:
                 topicTab.add(VaadinIcon.FINANCE.create());
                 break;
-                */
             default:
-                topicTab.setEnabled(true);
+                topicTab.setEnabled(true); //HERE
                 // no-op
         }
     }
 
     private void createTitle() {
         Div titleDiv = new Div();
+
+        JButton button = new JButton();
+        button.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        button.addMouseListener(new MouseListener() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                onTabChanged(ETopicType.NEWS.getValue());
+            }
+        });
 
         H1 title = new H1("Newtify");
         title.getStyle()
